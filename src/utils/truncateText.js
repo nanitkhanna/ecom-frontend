@@ -7,3 +7,4 @@ const truncateText = (text, charLimit = 90) => {
 };
 
 export default truncateText;
+    
