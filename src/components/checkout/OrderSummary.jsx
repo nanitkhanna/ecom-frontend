@@ -45,12 +45,12 @@ const OrderSummary = ({ totalPrice, cart, address, paymentMethod}) => {
             </p>
         </div>
 
-        <div className='pb-4 border rounded-lg shadow-sm mb-6'>
+        <div className='p-4 border rounded-lg shadow-sm mb-6'>
             <h2 className='text-2xl font-semibold mb-2'>Order Items</h2>
             <div className='space-y-2'>
                 {cart?.map((item) => (
                     <div key={item?.productId} className='flex items-center'>
-                        <img src={`${import.meta.env.VITE_BACK_END_URL}/images/${
+                        <img src={`${import.meta.env.VITE_BACK_END_IMAGE_URL}/${
                             item?.image
                         }`}
                         alt='Product'

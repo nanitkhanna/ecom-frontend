@@ -53,7 +53,15 @@ const HeroBanner = () => {
                                     </div>
                                 </div>
                                 <div className='w-full flex justify-center lg:w-1/2 p-4'>
-                                    <img src={item?.image}></img>
+                                    <img className='w-full h-full object-cover rounded-md'
+                                        src={`/images/${item.image}`}
+                                        alt={item.title}
+                                        onLoad={() => console.log('Image loaded successfully')}
+                                        onError={(e) => {
+                                            console.log('Image failed to load');
+                                            console.log('Attempted src:', e.target.src);
+                                        }}
+                                    />
                                 </div>
                                 </div>
                             </div>

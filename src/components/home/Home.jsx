@@ -6,15 +6,42 @@ import { fetchProducts } from "../../store/actions";
 import ProductCard from "../shared/ProductCard";
 import Loader from "../shared/Loader";
 import { FaExclamationTriangle } from "react-icons/fa";
+import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
     const dispatch = useDispatch();
+    const [searchParams] = useSearchParams();
     const {products} = useSelector((state) => state.products);
     const { isLoading, errorMessage } = useSelector(
         (state) => state.errors
     );
     useEffect(() => {
-        dispatch(fetchProducts());
+        const params = new URLSearchParams();
+
+        const currentPage = searchParams.get("page")
+            ? Number(searchParams.get("page"))
+            : 1;
+
+        params.set("pageNumber", currentPage - 1);
+
+        const sortOrder = searchParams.get("sortby") || "asc";
+        const categoryParams = searchParams.get("category") || null;
+        const keyword = searchParams.get("keyword") || null;
+        params.set("sortBy","price");
+        params.set("sortOrder", sortOrder);
+
+        if (categoryParams) {
+            params.set("category", categoryParams);
+        }
+
+        if (keyword) {
+            params.set("keyword", keyword);
+        }
+
+        const queryString = params.toString();
+        console.log("QUERY STRING", queryString);
+        
+        dispatch(fetchProducts(queryString));
     }, [dispatch]);
     return (
         <div className="lg:px-14 sm:px-8 px-4">

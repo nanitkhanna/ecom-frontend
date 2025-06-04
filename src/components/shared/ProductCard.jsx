@@ -49,10 +49,11 @@ const ProductCard = ({
                     specialPrice,
                 })
             }} 
-                    className="w-full overflow-hidden aspect-[3/2]">
+                className="flex justify-center bg-transparent overflow-hidden aspect-[3/2]"
+            >
                 <img 
-                className="w-full h-full cursor-pointer transition-transform duration-300 transform hover:scale-105"
-                src={image}
+                className="h-full cursor-pointer transition-transform duration-300 transform hover:scale-105"
+                src={`images/${image}`}
                 alt={productName}>
                 </img>
             </div>
